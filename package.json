@@ -27,7 +27,7 @@
   "sumoEnabled": false,
   "vault": {
    "name": "cc-bots-vault",
-   "resourceGroup" "neverfail-cc-bots-rg"
+   "resourceGroup": "neverfail-cc-bots-rg"
     }
   }
 }
