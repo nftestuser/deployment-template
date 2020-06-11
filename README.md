@@ -32,7 +32,7 @@
     ]
 }
 ```
-3. Create a backend configuration for terraform as `backend.tf`
+3. Make changes to `backend.tf` according to used provider
 ```
 terraform {
   backend "s3" {
