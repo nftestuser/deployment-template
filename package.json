@@ -1,0 +1,29 @@
+{
+  "name": "@neverfailcc/functions-deployment-template",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "apply": "node ./node_modules/.bin/functions-bundler apply",
+    "destroy": "node ./node_modules/.bin/functions-bundler destroy",
+    "plan": "node ./node_modules/.bin/functions-bundler plan"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:neverfailcc/functions-deployment-template.git"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@devsupply/functions-bundler": "^0.1.20"
+  },
+  "functionConfig": {
+    "provider": "ENTER PROVIDER HERE",
+    "region": "ENTER REGION HERE",
+    "logLevel": "INFO",
+    "sumoEnabled": false,
+    "secretName": "ENTER SECRET NAME"
+  }
+}

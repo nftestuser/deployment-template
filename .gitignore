@@ -1,0 +1,6 @@
+serverless.yml
+node_modules/
+.serverless/
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
