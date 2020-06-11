@@ -28,6 +28,10 @@
   "vault": {
    "name": "cc-bots-vault",
    "resourceGroup": "neverfail-cc-bots-rg"
-    }
+    },
+    "sku": {
+    "tier": "Dynamic",
+    "size": "Y1"
+  }
   }
 }
