@@ -1,11 +1,10 @@
 terraform {
-  /*
   backend "s3" {
-    bucket = "[BUCKET NAME]"
+    bucket = "mm-terraform-state-test"
     key    = "terraform"
-    region = "[REGION]"
+    region = "us-east-2"
   }
-  */
+  
 
   /*
   backend "azurerm" {
