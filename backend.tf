@@ -1,5 +1,6 @@
-/*
+
 terraform {
+  /*
   backend "s3" {
     bucket = "mm-terraform-state-test"
     key    = "terraform"
