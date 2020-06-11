@@ -25,7 +25,7 @@
   "region": "centralus",
   "logLevel": "INFO",
   "sumoEnabled": false,
-  "vaultName": "cc-bots-vault"
+  "vaultName": "cc-bots-vault",
   "sku": {
     "tier": "Dynamic",
     "size": "Y1"
