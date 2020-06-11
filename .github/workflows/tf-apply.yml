@@ -17,9 +17,9 @@ jobs:
       # @nfcc-functions token
       NFCC_NPM_TOKEN: ${{ secrets.NFCC_NPM_TOKEN }}
 
-      # AWS specific settings
-      # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #AWS specific settings
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       # Azure specific settings
       # ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
@@ -34,7 +34,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
       - uses: actions/setup-node@v1
 
-      - run: npm ci
+      - run: npm install
 
       - name: Terraform Apply
         id: init
