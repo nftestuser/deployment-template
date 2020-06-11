@@ -25,10 +25,9 @@
   "region": "centralus",
   "logLevel": "INFO",
   "sumoEnabled": false,
-  "vaultName": "cc-bots-vault",
-  "sku": {
-    "tier": "Dynamic",
-    "size": "Y1"
+  "vault": {
+   "name": "cc-bots-vault",
+   "resourceGroup" "neverfail-cc-bots-rg"
+    }
   }
-}
 }
