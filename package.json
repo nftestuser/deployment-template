@@ -24,7 +24,7 @@
   "provider": "azure",
   "region": "centralus",
   "logLevel": "INFO",
-  "sumoEnabled": false,
+  "sumoEnabled": true,
   "vaultName": "cc-bots-vault",
   "sku": {
     "tier": "Dynamic",
