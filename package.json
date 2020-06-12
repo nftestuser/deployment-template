@@ -21,11 +21,17 @@
     "@devsupply/functions-bundler": "^0.1.20"
   },
   "functionConfig": {
-  "provider": "aws",
-  "region": "us-east-2",
-  "logLevel": "INFO",
-  "sumoEnabled": false,
-  "secretName": "cc-bots-vault"
+    "provider": "azure",
+    "region": "centralus",
+    "logLevel": "INFO",
+    "sumoEnabled": false,
+    "vault": {
+      "name": "cc-bots-vault",
+      "resourceGroup": "neverfail-cc-bots-rg"
+    },
+    "sku": {
+      "tier": "Dynamic",
+      "size": "Y1"
+    }
+  }
 }
-}
-
