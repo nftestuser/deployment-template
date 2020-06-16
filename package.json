@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@nfcc-functions/aws-getrdsdbinstancesecurityconfiguration": "^1.0.0-alpha.3",
-    "@nfcc-functions/aws-getrdsdbs": "^1.0.0-alpha.2"
+    "@nfcc-functions/aws-getrdsdbs": "^1.0.0-alpha.3"
   },
   "devDependencies": {
     "@devsupply/functions-bundler": "^0.1.20"
