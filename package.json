@@ -20,12 +20,12 @@
   "devDependencies": {
     "@devsupply/functions-bundler": "^0.1.20"
   },
-  "functionConfig": {
-    "provider": "aws",
-    "region": "us-east-2",
+  functionConfig": {
+    "provider": "ENTER PROVIDER HERE",
+    "region": "ENTER REGION HERE",
     "logLevel": "INFO",
-    "sumoEnabled": true,
-    "secretName": "cc-bots-vault"
+    "sumoEnabled": false,
+    "secretName": "ENTER SECRET NAME"
   }
 }
 
