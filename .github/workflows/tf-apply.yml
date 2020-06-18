@@ -12,13 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Read package.json
-        uses: tyankatsu0105/read-package-version-actions@v1
-        id: package-version
-
-      - name: Show version number
-        run: echo "Version is ${{ steps.package-version.outputs.version }}"
-        # Version is 1.0.0
+      - name: get nested property
+        uses: notiz-dev/github-action-json-property@release
+        id: format_script
+        with: 
+          path: 'package.json'
+          prop_path: 'scripts.format'
+      - run: echo ${{steps.format_script.outputs.prop}} 
     
 
       
