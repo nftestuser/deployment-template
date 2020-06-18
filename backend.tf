@@ -1,12 +1,12 @@
 
 terraform {
-  /*
+  
   backend "s3" {
-    bucket = "[BUCKET NAME]"
+    bucket = "nftestuser-tfstate-bucket"
     key    = "terraform"
-    region = "[REGION]"
+    region = "us-east-2"
   }
-  */
+  
 
   /*
   backend "azurerm" {
