@@ -17,7 +17,7 @@ jobs:
         id: format_script
         with: 
           path: 'package.json'
-          prop_path: 'scripts.format'
+          prop_path: 'functionConfig.provider'
       - run: echo ${{steps.format_script.outputs.prop}} 
     
 
