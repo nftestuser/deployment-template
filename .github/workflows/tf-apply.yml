@@ -41,10 +41,23 @@ jobs:
           prop_path: 'functionConfig.provider'
         
       - name: AWS Terraform Apply
-        if: steps.format_script.outputs.prop == 'azure'
+        if: steps.format_script.outputs.prop == 'aws' 
         env:
           #AWS specific settings
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        id: init
+        id: aws_init
         run: node ./node_modules/.bin/functions-bundler apply --auto-approve
+      
+      - name: Azure Terraform Apply
+        if: steps.format_script.outputs.prop == 'azure' 
+        env:
+          #AWS specific settings
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
+        id: azure_init
+        run: node ./node_modules/.bin/functions-bundler apply --auto-approve  
+        
