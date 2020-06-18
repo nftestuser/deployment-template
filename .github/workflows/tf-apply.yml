@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: get version
       id: version
-      uses: notiz-dev/github-action-json-property@release
+      uses: notiz-dev/github-action-json-property@v0.1.0
       with: 
         path: 'package.json'
         prop_path: 'version'
