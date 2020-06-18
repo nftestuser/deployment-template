@@ -21,11 +21,11 @@
     "@devsupply/functions-bundler": "^0.1.20"
   },
   "functionConfig": {
-    "provider": "ENTER PROVIDER HERE",
-    "region": "ENTER REGION HERE",
+    "provider": "aws",
+    "region": "us-east-2",
     "logLevel": "INFO",
     "sumoEnabled": false,
-    "secretName": "ENTER SECRET NAME"
+    "secretName": "cc-bots-vault"
   }
 }
 
