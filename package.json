@@ -23,7 +23,7 @@
   "functionConfig": {
     "provider": "aws",
     "region": "us-east-2",
-    "logLevel": "INFO",
+    "logLevel": "info",
     "sumoEnabled": false,
     "secretName": "cc-bots-vault"
   }
