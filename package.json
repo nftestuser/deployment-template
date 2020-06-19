@@ -18,7 +18,7 @@
     "@nfcc-functions/aws-deletedbsnapshots": "^1.0.0-alpha.1",
     "@nfcc-functions/aws-deletevolumesnapshots": "^1.0.0-alpha.1",
     "@nfcc-functions/aws-disables3bucketblockpublicpolicy": "^1.0.0-alpha.1",
-    "@nfcc-functions/aws-removevolumebackupplanpolicy": "^1.0.0-alpha.1"
+    "@nfcc-functions/aws-removevolumebackupplanpolicy": "^1.0.0-alpha.2"
     
   },
   "devDependencies": {
