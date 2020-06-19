@@ -24,7 +24,7 @@
     "provider": "aws",
     "region": "us-east-2",
     "logLevel": "info",
-    "sumoEnabled": false,
+    "sumoEnabled": true,
     "secretName": "cc-bots-vault"
   }
 }
