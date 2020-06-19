@@ -2,7 +2,7 @@
 terraform {
   
   backend "s3" {
-    bucket = "nftestuser-tfstate-bucket"
+    bucket = "mm-terraform-statetest"
     key    = "terraform"
     region = "us-east-2"
   }
