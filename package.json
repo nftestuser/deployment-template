@@ -18,7 +18,7 @@
     "@nfcc-functions/aws-getec2instances": "^1.0.0-alpha.2"
   },
   "devDependencies": {
-    "@devsupply/functions-bundler": "^0.1.20"
+    "@devsupply/functions-bundler": "^0.1.22"
   },
   "functionConfig": {
     "provider": "aws",
