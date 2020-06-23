@@ -59,17 +59,15 @@ jobs:
           sed -i '/::debug/d' output.json
           sed -i '/::set-output/d' output.json
           node ./scripts/aws.js
-      
-          
-          
-      - name: Azure Upload
-        uses: Azure/cli@v1.0.0
-        with:
-          inlineScript:  | 
-             az storage blob upload -n output.json -f output.json -c mm-terraform-state --connection-string "DefaultEndpointsProtocol=https;AccountName=cbtfnfccfunctions;AccountKey=JR3olGhECMtbWfkUmqmZPzutEsnMeIaPkQ8XHLkCKLH15EACCjJFWpuwKdLtppD/EFpKXrdtk/LvfdNBTRVNcA==;EndpointSuffix=core.windows.net"
-   
-          
-      
+    
+    
+      #- name: Azure Upload
+      #  uses: Azure/cli@v1.0.0
+      #  with:
+      #    inlineScript:  | 
+      #       az storage blob upload -n output.json -f output.json -c mm-terraform-state --connection-string "DefaultEndpointsProtocol=https;AccountName=cbtfnfccfunctions;AccountKey=JR3olGhECMtbWfkUmqmZPzutEsnMeIaPkQ8XHLkCKLH15EACCjJFWpuwKdLtppD/EFpKXrdtk/LvfdNBTRVNcA==;EndpointSuffix=core.windows.net"
+    
+    
       - name: Azure Terraform Apply
         if: steps.check_files.outputs.files_exists == 'true'&& steps.format_script.outputs.prop == 'azure' 
         env:
