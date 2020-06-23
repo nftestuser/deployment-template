@@ -55,7 +55,7 @@ jobs:
         run: |
           node ./node_modules/.bin/functions-bundler apply --auto-approve
           terraform output -json  > output.json
-          echo output.json
+          cat output.json
           
       
       - name: Azure Terraform Apply
