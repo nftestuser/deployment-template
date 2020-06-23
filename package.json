@@ -24,15 +24,23 @@
     "@devsupply/functions-bundler": "^0.1.23"
   },
   "functionConfig": {
-    "provider": "aws",
-    "region": "us-east-2",
-    "logLevel": "info",
-    "sumoEnabled": true,
-    "secretName": "cc-bots-vault"
+  "provider": "azure",
+  "region": "centralus",
+  "logLevel": "INFO",
+  "sumoEnabled": false,
+  "vault": {
+    "name": "vault-name",
+    "resourceGroup": "vault-rg"
   },
+  "sku": {
+    "tier": "Dynamic",
+    "size": "Y1"
+  }
+},
   "terraformConfig": {
-  "bucket": "nftestuser-tfstate-bucket",
-  "region": "us-east-2"
+  "resource_group_name": "nfcc-functions",
+  "storage_account_name": "cbtfnfccfunctions",
+  "container_name": "mm-terraform-state"
 }
 }
 
