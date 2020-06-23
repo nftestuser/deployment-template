@@ -26,11 +26,11 @@
   "functionConfig": {
   "provider": "azure",
   "region": "centralus",
-  "logLevel": "INFO",
+  "logLevel": "info",
   "sumoEnabled": false,
   "vault": {
-    "name": "vault-name",
-    "resourceGroup": "vault-rg"
+    "name": "cc-bots-vault",
+    "resourceGroup": "neverfail-cc-bots-rg"
   },
   "sku": {
     "tier": "Dynamic",
