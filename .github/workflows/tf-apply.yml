@@ -58,7 +58,7 @@ jobs:
           sed -i '/terraform-bin output -json/d' output.json
           sed -i '/::debug/d' output.json
           sed -i '/::set-output/d' output.json
-          node ./scripts/aws.js
+          node ./scripts/awsGetBotsURL.js
     
     
       #- name: Azure Upload
