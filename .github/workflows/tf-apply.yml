@@ -63,7 +63,7 @@ jobs:
         uses: Azure/cli@v1.0.0
         with:
           inlineScript:  | 
-             az storage blob upload -n output.json -f output.json -c "mm-terraform-state" --connection-string "DefaultEndpointsProtocol=https;AccountName=0242ac130002;AccountKey=wNEw74A43xS2afbuGitwEGBTW8wjWqHt2xz4xJ+af6eStGTo+P7ko9Jt2FMhvOsgDLbjuNbZdDwDO5jqEIaMWQ==;EndpointSuffix=core.windows.net"
+             az storage blob upload -n output.json -f output.json -c mm-terraform-state --connection-string "DefaultEndpointsProtocol=https;AccountName=cbtfnfccfunctions;AccountKey=JR3olGhECMtbWfkUmqmZPzutEsnMeIaPkQ8XHLkCKLH15EACCjJFWpuwKdLtppD/EFpKXrdtk/LvfdNBTRVNcA==;EndpointSuffix=core.windows.net"
    
           
       
