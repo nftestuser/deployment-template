@@ -57,13 +57,13 @@ jobs:
           terraform output -json  > output.json
           sed -i '/terraform-bin output -json/d' output.json
           cat output.json
-          node ./scripts/aws.js
+          
           
       - name: Azure Upload
         uses: Azure/cli@v1.0.0
         with:
           inlineScript:  | 
-             az storage blob upload -n output.json -f terraform/output.json -c mm-terraform-state --connection-string "DefaultEndpointsProtocol=https;AccountName=0242ac130002;AccountKey=wNEw74A43xS2afbuGitwEGBTW8wjWqHt2xz4xJ+af6eStGTo+P7ko9Jt2FMhvOsgDLbjuNbZdDwDO5jqEIaMWQ==;EndpointSuffix=core.windows.net"
+             az storage blob upload -n output.json -f terraform/output.json -c "mm-terraform-state" --connection-string "DefaultEndpointsProtocol=https;AccountName=0242ac130002;AccountKey=wNEw74A43xS2afbuGitwEGBTW8wjWqHt2xz4xJ+af6eStGTo+P7ko9Jt2FMhvOsgDLbjuNbZdDwDO5jqEIaMWQ==;EndpointSuffix=core.windows.net"
    
           
       
