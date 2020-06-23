@@ -56,7 +56,7 @@ jobs:
           node ./node_modules/.bin/functions-bundler apply --auto-approve
           terraform output -json  > output.json
           sed -i '/terraform-bin output -json/d' output.json
-          cat output.json
+          node ./scripts/aws.js
           
       
       - name: Azure Terraform Apply
