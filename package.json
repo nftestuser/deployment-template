@@ -38,9 +38,9 @@
   }
 },
   "terraformConfig": {
-  "resource_group_name": "nfcc-functions",
-  "storage_account_name": "cbtfnfccfunctions",
-  "container_name": "mm-terraform-state"
+  "resourceGroup": "nfcc-functions",
+  "storageAccount": "cbtfnfccfunctions",
+  "container": "mm-terraform-state"
 }
 }
 
