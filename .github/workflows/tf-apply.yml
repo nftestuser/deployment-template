@@ -84,12 +84,8 @@ jobs:
           sed -i '/terraform-bin output -json/d' azure_output.json
           sed -i '/::debug/d' azure_output.json
           sed -i '/::set-output/d' azure_output.json
-          
-      - name: Azure Upload
-        uses: Azure/cli@v1.0.0
-        with:
-          inlineScript:  | 
-             az storage blob upload -n azure_output.json -f azure_output.json -c mm-terraform-state --connection-string "DefaultEndpointsProtocol=https;AccountName=cbtfnfccfunctions;AccountKey=JR3olGhECMtbWfkUmqmZPzutEsnMeIaPkQ8XHLkCKLH15EACCjJFWpuwKdLtppD/EFpKXrdtk/LvfdNBTRVNcA==;EndpointSuffix=core.windows.net"
+          node ./scripts/azureGetBotsURL.js
+      
         
       - name: AWS Terraform Destroy
         if: steps.check_files.outputs.files_exists == 'false' && steps.format_script.outputs.prop == 'aws'
