@@ -18,7 +18,10 @@
     "@nfcc-functions/aws-getallbuckets": "^1.0.0-alpha.7"
   },
   "devDependencies": {
-    "@devsupply/functions-bundler": "^0.1.23"
+    "@devsupply/functions-bundler": "^0.1.23",
+    "azure-functions": "latest",
+    "@azure/ms-rest-nodeauth": "^3.0.5",
+    "@azure/arm-appservice": "^6.0.0"
   },
   "functionConfig": {
   "provider": "azure",
