@@ -28,7 +28,7 @@
   "provider": "azure",
   "region": "centralus",
   "logLevel": "info",
-  "sumoEnabled": true,
+  "sumoEnabled": false,
   "vault": {
     "name": "cc-bots-vault",
     "resourceGroup": "neverfail-cc-bots-rg"
@@ -44,10 +44,3 @@
   "container": "mm-terraform-state"
 }
 }
-
-
-
-
-
-
-
