@@ -48,14 +48,14 @@ async function getEndpointsURL() {
       for (let y = 0; y < functions.length; y++) {
         functionName = functions[y].properties.name;
         endpointUrl = functions[y].properties.invoke_url_template;
-      }
-      response.data.push(
+        response.data.push(
         {
           functionName: functionName,
           endpointUrl: endpointUrl,
           masterKey: keys.masterKey
         }
       );
+      }
     }
   }
   console.log(response);
