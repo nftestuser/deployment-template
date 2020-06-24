@@ -81,7 +81,7 @@ jobs:
         run: | 
           node ./node_modules/.bin/functions-bundler apply --auto-approve  
           terraform output -json  > azure_output.json
-          sed -i '/terraform-bin azure_output -json/d' azure_output.json
+          sed -i '/terraform-bin output -json/d' azure_output.json
           sed -i '/::debug/d' azure_output.json
           sed -i '/::set-output/d' azure_output.json
           
