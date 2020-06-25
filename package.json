@@ -28,7 +28,7 @@
   "provider": "azure",
   "region": "centralus",
   "logLevel": "info",
-  "sumoEnabled": false,
+  "sumoEnabled": true,
   "vault": {
     "name": "cc-bots-vault",
     "resourceGroup": "neverfail-cc-bots-rg"
