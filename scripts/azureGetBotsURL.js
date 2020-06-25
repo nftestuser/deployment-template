@@ -137,6 +137,7 @@ async function getEndpointsURL() {
             console.log(response);
             return response;
           }
+          console.log("Sleep 5 seconds");
           await sleepUtils.sleep(5000);
           azureFunctions = await azFunctions.listFunctions();
         } else {
