@@ -60,7 +60,7 @@ function getResponse(serverlessFunctionNames, azureFunctions, masterKey) {
             provider: 'azure',
             functionName: serverlessFunctionName,
             endpointUrl: azureFunction.properties.invoke_url_template,
-            masterKey: masterKey,
+            key: masterKey,
             status: 'OK'
           }
         );
@@ -70,7 +70,7 @@ function getResponse(serverlessFunctionNames, azureFunctions, masterKey) {
             provider: 'azure',
             functionName: serverlessFunctionName,
             endpointUrl: "",
-            masterKey: masterKey,
+            key: masterKey,
             status: 'failed',
             message: 'Could not find function in azure'
           }
@@ -86,7 +86,7 @@ function getResponse(serverlessFunctionNames, azureFunctions, masterKey) {
             provider: 'azure',
             functionName: azureFunctionName,
             endpointUrl: azureFunction.properties.invoke_url_template,
-            masterKey: masterKey,
+            key: masterKey,
             status: 'OK'
           }
         );
@@ -97,7 +97,7 @@ function getResponse(serverlessFunctionNames, azureFunctions, masterKey) {
             provider: 'azure',
             functionName: azureFunctionName,
             endpointUrl: azureFunction.properties.invoke_url_template,
-            masterKey: masterKey,
+            key: masterKey,
             status: 'failed',
             message: 'Function is still present in azure even if was removed from package.json'
           }
@@ -153,7 +153,7 @@ async function getEndpointsURL() {
             provider: 'azure',
             functionName: functionName,
             endpointUrl: endpointUrl,
-            masterKey: keys.masterKey,
+            key: keys.masterKey,
             status: 'OK'
           }
         );
