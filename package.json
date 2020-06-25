@@ -16,8 +16,7 @@
   },
   "dependencies": {
     "@nfcc-functions/aws-getallbuckets": "^1.0.0-alpha.9",
-    "@nfcc-functions/aws-getec2instances": "^1.0.0-alpha.9",
-    "@nfcc-functions/aws-getrdsdbs":"^1.0.0-alpha.4"
+    "@nfcc-functions/aws-getec2instances": "^1.0.0-alpha.9"
   },
   "devDependencies": {
     "@devsupply/functions-bundler": "^0.1.24",
