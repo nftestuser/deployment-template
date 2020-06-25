@@ -13,9 +13,10 @@ function parseJsonFile() {
     if (element !== "api_key" && element !== "aws_api_gateway_deployment") {
       response.data.push(
         {
+          provider:"aws",
           functionName: element,
           endpointUrl: invokeUrl + elements[element].value.path,
-          apiKey: apiKeyValue
+          key: apiKeyValue
         }
       );
     }
