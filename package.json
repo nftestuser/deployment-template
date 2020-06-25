@@ -15,8 +15,7 @@
     "url": "git@github.com:neverfailcc/functions-deployment-template.git"
   },
   "dependencies": {
-    "@nfcc-functions/aws-getallbuckets": "^1.0.0-alpha.8",
-    "@nfcc-functions/aws-getec2instances": "^1.0.0-alpha.4"
+    "@nfcc-functions/aws-getallbuckets": "^1.0.0-alpha.8"
   },
   "devDependencies": {
     "@devsupply/functions-bundler": "^0.1.23",
