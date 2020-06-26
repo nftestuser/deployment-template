@@ -15,8 +15,9 @@
     "url": "git@github.com:neverfailcc/functions-deployment-template.git"
   },
   "dependencies": {
-    "@nfcc-functions/aws-getallbuckets": "^1.0.0-alpha.9"
-    
+    "@nfcc-functions/azure-disablehttpsonlytrafficconfiguration": "^1.0.0-alpha.1",
+    "@nfcc-functions/azure-addisableuserpasswordexpiration": "^1.0.0-alpha.2",
+    "@nfcc-functions/azure-removevmbackuppolicy": "^1.0.0-alpha.3" 
   },
   "devDependencies": {
     "@devsupply/functions-bundler": "^0.1.24",
