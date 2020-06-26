@@ -22,11 +22,20 @@ async function authenticate(subscriptionId) {
 }
 
 function parseTerraformOutputFile() {
-  const rawdata = fs.readFileSync('azure_output.json');
+  const rawdata = fs.readFileSync(path.join(process.cwd(), 'azure_output.json'));
   const elements = JSON.parse(rawdata);
   return {
     functionAppName: elements.function_app.value.name,
     resourceGroupName: elements.function_app.value.resource_group_name
+  }
+}
+
+function parsePackageJsonFile() {
+  const rawdata = fs.readFileSync(path.join(process.cwd(), 'package.json'));
+  const elements = JSON.parse(rawdata);
+  return {
+    customerName: elements.customerConfig.customerName,
+    incrementNumber: elements.customerConfig.incrementNumber
   }
 }
 
@@ -36,16 +45,20 @@ function getFunctionNamesFromServerlessFile() {
   try {
     const fileContents = fs.readFileSync(path.join(process.cwd(), 'serverless.yml'), 'utf8');
     const data = yaml.safeLoad(fileContents);
-    functionNames = Object.keys(data.functions);
+    if (data.functions) {
+      functionNames = Object.keys(data.functions);
+    }
     return functionNames;
   } catch (e) {
     console.log(e);
   }
 }
 
-function getResponse(serverlessFunctionNames, azureFunctions, masterKey) {
+function getResponse(serverlessFunctionNames, azureFunctions, masterKey, customerName, incrementNumber) {
   let response = {
-    data: []
+    mode: "Post_Bot_Deployment",
+    customer: {},
+    functions: []
   };
   let azureFunctionNames = [];
   azureFunctions.forEach(azureFunction => {
@@ -55,17 +68,17 @@ function getResponse(serverlessFunctionNames, azureFunctions, masterKey) {
     serverlessFunctionNames.forEach(serverlessFunctionName => {
       if (azureFunctionNames.includes(serverlessFunctionName)) {
         const azureFunction = azureFunctions.find(azureFunc => azureFunc.properties.name === serverlessFunctionName);
-        response.data.push(
+        response.functions.push(
           {
             provider: 'azure',
             functionName: serverlessFunctionName,
             endpointUrl: azureFunction.properties.invoke_url_template,
             key: masterKey,
-            status: 'OK'
+            status: 'success'
           }
         );
       } else {
-        response.data.push(
+        response.functions.push(
           {
             provider: 'azure',
             functionName: serverlessFunctionName,
@@ -81,38 +94,32 @@ function getResponse(serverlessFunctionNames, azureFunctions, masterKey) {
     azureFunctionNames.forEach(azureFunctionName => {
       if (serverlessFunctionNames.includes(azureFunctionName)) {
         const azureFunction = azureFunctions.find(azureFunc => azureFunc.properties.name === azureFunctionName);
-        response.data.push(
+        response.functions.push(
           {
             provider: 'azure',
             functionName: azureFunctionName,
             endpointUrl: azureFunction.properties.invoke_url_template,
             key: masterKey,
-            status: 'OK'
-          }
-        );
-      } else {
-        const azureFunction = azureFunctions.find(azureFunc => azureFunc.properties.name === azureFunctionName);
-        response.data.push(
-          {
-            provider: 'azure',
-            functionName: azureFunctionName,
-            endpointUrl: azureFunction.properties.invoke_url_template,
-            key: masterKey,
-            status: 'failed',
-            message: 'Function is still present in azure even if was removed from package.json'
+            status: 'success'
           }
         );
       }
     })
   }
+  response.customer.customerName = customerName;
+  response.customer.incrementNumber = incrementNumber;
   return response;
 }
 
 async function getEndpointsURL() {
   const functionName = parseTerraformOutputFile().functionAppName;
   const resourceGroupName = parseTerraformOutputFile().resourceGroupName;
+  const customerName = parsePackageJsonFile().customerName;
+  const incrementNumber = parsePackageJsonFile().incrementNumber;
   let response = {
-    data: []
+    mode: "Post_Bot_Deployment",
+    customer: {},
+    functions: []
   };
   let client = await authenticate('');
   let functionAppsList = await client.webApps.list();
@@ -128,39 +135,43 @@ async function getEndpointsURL() {
         });
       let azureFunctions = await azFunctions.listFunctions();
       let serverlessFunctionNames = getFunctionNamesFromServerlessFile();
-      let timeout = 120000;//2 min
-      while (timeout > 0) {
-        if (azureFunctions.length !== serverlessFunctionNames.length) {
-          timeout -= 5000;
-          if (timeout === 0) {
-            response = getResponse(serverlessFunctionNames, azureFunctions, keys.masterKey);
-            console.log(response);
-            return response;
+      if (serverlessFunctionNames) {
+        let timeout = 180000;//3 min
+        while (timeout > 0) {
+          if (azureFunctions.length !== serverlessFunctionNames.length) {
+            timeout -= 5000;
+            if (timeout === 0) {
+              response = getResponse(serverlessFunctionNames, azureFunctions, keys.masterKey, customerName, incrementNumber);
+              console.log(response);
+              return response;
+            }
+            await sleepUtils.sleep(5000);
+            console.log("wait 5 seconds");
+            azureFunctions = await azFunctions.listFunctions();
+          } else {
+            break;
           }
-          console.log("Sleep 5 seconds");
-          await sleepUtils.sleep(5000);
-          azureFunctions = await azFunctions.listFunctions();
-        } else {
-          break;
         }
-      }
-      let functionName;
-      for (let y = 0; y < azureFunctions.length; y++) {
-        functionName = azureFunctions[y].properties.name;
-        let endpointUrl = azureFunctions[y].properties.invoke_url_template;
-        response.data.push(
-          {
-            provider: 'azure',
-            functionName: functionName,
-            endpointUrl: endpointUrl,
-            key: keys.masterKey,
-            status: 'OK'
-          }
-        );
-      }
+        let functionName;
+        for (let y = 0; y < azureFunctions.length; y++) {
+          functionName = azureFunctions[y].properties.name;
+          let endpointUrl = azureFunctions[y].properties.invoke_url_template;
+          response.functions.push(
+            {
+              provider: 'azure',
+              functionName: functionName,
+              endpointUrl: endpointUrl,
+              key: keys.masterKey,
+              status: 'success'
+            }
+          );
+        }
 
+      }
     }
   }
+  response.customer.customerName = customerName;
+  response.customer.incrementNumber = incrementNumber;
   console.log(response);
   return response;
 
