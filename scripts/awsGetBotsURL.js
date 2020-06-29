@@ -22,14 +22,19 @@ function getEndpointsURL() {
   const invokeUrl = outputJsonData["aws_api_gateway_deployment"].value.invoke_url;
   for (let element in outputJsonData) {
     if (element !== "api_key" && element !== "aws_api_gateway_deployment") {
-      response.functions.push(
-        {
-          functionName: element,
-          endpointUrl: invokeUrl + outputJsonData[element].value.path,
-          key: apiKeyValue,
-          status: "success"
+      for (let dependency in packageJsonData["dependencies"]) {
+        if (dependency.includes(element)) {
+          response.functions.push(
+            {
+              functionName: element,
+              version: packageJsonData["dependencies"][dependency],
+              endpointUrl: invokeUrl + outputJsonData[element].value.path,
+              key: apiKeyValue,
+              status: "success"
+            }
+          );
         }
-      );
+      }
     }
   }
   response.customer.customerName = customerName;
