@@ -12,9 +12,7 @@ const CLIENT_SECRET = process.env.ARM_CLIENT_SECRET;
 const CLIENT_TENANT = process.env.ARM_TENANT_ID;
 const SUBSCRIPTION_ID = process.env.ARM_SUBSCRIPTION_ID;
 
-
-const AZURE_FUNCTION_URL = "https://newfunctionaop.azurewebsites.net/api/testBotsUrls?code=rBsLK67mH5LFHxfEXQ3tOpG6G63d5veJBaHP2mPMPNPOSv6DdLZf6Q==";
-
+const AZURE_FUNCTION_URL = "http://08de43543805839a.azurewebsites.net/api/pocIntegrationHandler?code=uPPVaN0FYW7yN8cV56GqMt2PRhYzXypnYWbuqFOWrttt/v0VrskqTg==";
 
 async function authenticate(subscriptionId) {
   let credentials = await MsRestNodeAuth.loginWithServicePrincipalSecret(CLIENT_ID, CLIENT_SECRET, CLIENT_TENANT);
@@ -35,7 +33,8 @@ function parsePackageJsonFile() {
   const elements = JSON.parse(rawdata);
   return {
     customerName: elements.customerConfig.customerName,
-    incrementNumber: elements.customerConfig.incrementNumber
+    incrementNumber: elements.customerConfig.incrementNumber,
+    dependencies: elements.dependencies
   }
 }
 
@@ -116,6 +115,7 @@ async function getEndpointsURL() {
   const resourceGroupName = parseTerraformOutputFile().resourceGroupName;
   const customerName = parsePackageJsonFile().customerName;
   const incrementNumber = parsePackageJsonFile().incrementNumber;
+  const packageJsonDependencies  = parsePackageJsonFile().dependencies;
   let response = {
     mode: "Post_Bot_Deployment",
     customer: {},
@@ -146,7 +146,6 @@ async function getEndpointsURL() {
               return response;
             }
             await sleepUtils.sleep(5000);
-            console.log("wait 5 seconds");
             azureFunctions = await azFunctions.listFunctions();
           } else {
             break;
@@ -156,17 +155,21 @@ async function getEndpointsURL() {
         for (let y = 0; y < azureFunctions.length; y++) {
           functionName = azureFunctions[y].properties.name;
           let endpointUrl = azureFunctions[y].properties.invoke_url_template;
-          response.functions.push(
-            {
-              provider: 'azure',
-              functionName: functionName,
-              endpointUrl: endpointUrl,
-              key: keys.masterKey,
-              status: 'success'
+          for (let dependency in packageJsonDependencies) {
+            if (dependency.includes(functionName)) {
+              response.functions.push(
+                {
+                  provider: 'azure',
+                  functionName: functionName,
+                  version: packageJsonDependencies[dependency],
+                  endpointUrl: endpointUrl,
+                  key: keys.masterKey,
+                  status: 'success'
+                }
+              );
             }
-          );
+          }
         }
-
       }
     }
   }
@@ -185,7 +188,10 @@ async function callAzureFunction() {
     data: data
   }).then(function (response) {
     console.log(response.data);
-  });
+  })
+    .catch(function (error) {
+      console.error(error);
+    })
 }
 
-getEndpointsURL();
+callAzureFunction();
