@@ -1,4 +1,8 @@
 const path = require('path');
+const axios = require('axios');
+
+const AZURE_FUNCTION_URL = "http://08de43543805839a.azurewebsites.net/api/pocIntegrationHandler?code=uPPVaN0FYW7yN8cV56GqMt2PRhYzXypnYWbuqFOWrttt/v0VrskqTg==";
+
 
 function parseJsonFile(filePath) {
   const fs = require('fs');
@@ -10,7 +14,7 @@ function parseJsonFile(filePath) {
 function getEndpointsURL() {
   let response = {
     mode: "Post_Bot_Deployment",
-    customer: {},
+    customer: "",
     functions: []
   };
 
@@ -37,10 +41,23 @@ function getEndpointsURL() {
       }
     }
   }
-  response.customer.customerName = customerName;
-  response.customer.incrementNumber = incrementNumber;
+  response.customer = customerName + "-" + incrementNumber;
   console.log(response);
   return response;
 }
 
-getEndpointsURL();
+async function callAzureFunction() {
+  const data = await getEndpointsURL();
+  axios({
+    method: 'post',
+    url: AZURE_FUNCTION_URL,
+    data: data
+  }).then(function (response) {
+    console.log(response.data);
+  })
+    .catch(function (error) {
+      console.error(error);
+    })
+}
+
+callAzureFunction();
