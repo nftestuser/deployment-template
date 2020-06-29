@@ -7,6 +7,7 @@ const path = require('path');
 const sleepUtils = require('./sleep');
 
 
+
 const CLIENT_ID = process.env.ARM_CLIENT_ID;
 const CLIENT_SECRET = process.env.ARM_CLIENT_SECRET;
 const CLIENT_TENANT = process.env.ARM_TENANT_ID;
@@ -56,7 +57,7 @@ function getFunctionNamesFromServerlessFile() {
 function getResponse(serverlessFunctionNames, azureFunctions, masterKey, customerName, incrementNumber) {
   let response = {
     mode: "Post_Bot_Deployment",
-    customer: {},
+    customer: "",
     functions: []
   };
   let azureFunctionNames = [];
@@ -105,8 +106,7 @@ function getResponse(serverlessFunctionNames, azureFunctions, masterKey, custome
       }
     })
   }
-  response.customer.customerName = customerName;
-  response.customer.incrementNumber = incrementNumber;
+  response.customer = customerName + "-" + incrementNumber;
   return response;
 }
 
@@ -115,10 +115,10 @@ async function getEndpointsURL() {
   const resourceGroupName = parseTerraformOutputFile().resourceGroupName;
   const customerName = parsePackageJsonFile().customerName;
   const incrementNumber = parsePackageJsonFile().incrementNumber;
-  const packageJsonDependencies  = parsePackageJsonFile().dependencies;
+  const packageJsonDependencies = parsePackageJsonFile().dependencies;
   let response = {
     mode: "Post_Bot_Deployment",
-    customer: {},
+    customer: "",
     functions: []
   };
   let client = await authenticate('');
@@ -173,8 +173,7 @@ async function getEndpointsURL() {
       }
     }
   }
-  response.customer.customerName = customerName;
-  response.customer.incrementNumber = incrementNumber;
+  response.customer = customerName + "-" + incrementNumber;
   console.log(response);
   return response;
 
