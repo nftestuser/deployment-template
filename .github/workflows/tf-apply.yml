@@ -15,9 +15,6 @@ defaults:
 jobs:
   apply:
     env:
-      
-      # @devsupply token
-      NPM_TOKEN: ${{ secrets.READ_PACKAGES_TOKEN }}
       # @nfcc-functions token
       NFCC_NPM_TOKEN: ${{ secrets.NFCC_NPM_TOKEN }}  
     
