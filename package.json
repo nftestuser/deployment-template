@@ -17,7 +17,7 @@
   "dependencies": {
     "@nfcc-functions/aws-getallbuckets": "^1.0.0-alpha.9",
     "@nfcc-functions/aws-getec2instances": "^1.0.0-alpha.9",
-    "@nfcc-functions/ azure-ad-getallusers": "^1.0.0-alpha.3"
+    "@nfcc-functions/azure-ad-getallusers": "^1.0.0-alpha.3"
     
   },
   "devDependencies": {
