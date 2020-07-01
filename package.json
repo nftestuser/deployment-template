@@ -15,7 +15,7 @@
     "url": "git@github.com:neverfailcc/functions-deployment-template.git"
   },
   "dependencies": {
-    "@nfcc-functions/aws-deletedbsnapshots": "^1.0.1",
+    "@nfcc-functions/aws-deletedbsnapshots": "^1.0.2",
     "@nfcc-functions/aws-deletevolumesnapshots": "^1.0.1",
     "@nfcc-functions/aws-disables3bucketblockpublicpolicy":"^1.0.1",
     "@nfcc-functions/aws-enables3bucketblockpublicpolicy":"^1.0.1",
