@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "@nfcc-functions/aws-getallbuckets": "^1.0.0-alpha.12",
-    "@nfcc-functions/aws-getec2instances": "^1.0.0-alpha.11"
+    "@nfcc-functions/aws-getec2instances": "^1.0.0-alpha.11",
+    "@nfcc-functions/aws-gets3bucketblockpublicpolicy":"^1.0.0-alpha.11"
   },
   "devDependencies": {
     "@devsupply/functions-bundler": "^0.1.24",
