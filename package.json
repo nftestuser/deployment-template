@@ -30,15 +30,23 @@
     "incrementNumber": "1"
   },
   "functionConfig": {
-    "provider": "aws",
-    "region": "us-east-2",
-    "logLevel": "info",
-    "sumoEnabled": true,
-    "secretName": "cc-bots-vault"
+  "provider": "azure",
+  "region": "centralus",
+  "logLevel": "info",
+  "sumoEnabled": true,
+  "vault": {
+    "name": "cc-bots-vault",
+    "resourceGroup": "neverfail-cc-bots-rg"
   },
+  "sku": {
+    "tier": "Dynamic",
+    "size": "Y1"
+  }
+},
   "terraformConfig": {
-  "bucket": "nftestuser-tfstate-bucket",
-  "region": "us-east-2"
+  "resourceGroup": "nfcc-functions",
+  "storageAccount": "cbtfnfccfunctions",
+  "container": "mm-terraform-state"
 }
 }
 
