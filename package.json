@@ -15,21 +15,9 @@
     "url": "git@github.com:neverfailcc/functions-deployment-template.git"
   },
   "dependencies": {
-   "@nfcc-functions/azure-ad-enableuserpasswordexpiration": "^1.0.1",
-    "@nfcc-functions/azure-ad-getallusers": "^1.0.1",
-    "@nfcc-functions/azure-ad-getenabledusers":"^1.0.1",
-    "@nfcc-functions/azure-ad-getuserpasswordexpiration":"^1.0.1",
-    "@nfcc-functions/azure-addisableuserpasswordexpiration":"^1.0.1",
-    "@nfcc-functions/azure-deletevmrestorepoints":"^1.0.1",
-    "@nfcc-functions/azure-disablehttpsonlytrafficconfiguration":"^1.0.1",
-    "@nfcc-functions/azure-getallvms":"^1.0.1",
-    "@nfcc-functions/azure-getblobstoragecontainers":"^1.0.1",
-    "@nfcc-functions/azure-getcontainerimmutabilitypolicy":"^1.0.1",
-    "@nfcc-functions/azure-getstoragesecurityconfig":"^1.0.1",
-    "@nfcc-functions/azure-getvmbackuppolicy":"^1.0.1",
-    "@nfcc-functions/azure-getvmrestorepoints":"^1.0.1",
-    "@nfcc-functions/azure-removevmbackuppolicy":"^1.0.1",
-    "@nfcc-functions/azure-setstoragesecurityconfig":"^1.0.1"
+   "@nfcc-functions/aws-deletedbsnapshots": "^1.0.2",
+    "@nfcc-functions/aws-deletevolumesnapshots": "^1.0.1",
+    "@nfcc-functions/aws-disables3bucketblockpublicpolicy":"^1.0.1"
   },
   "devDependencies": {
     "@devsupply/functions-bundler": "^0.1.24",
@@ -42,18 +30,16 @@
     "incrementNumber": "1"
   },
   "functionConfig": {
-  "provider": "azure",
-  "region": "centralus",
-  "logLevel": "info",
-  "sumoEnabled": true,
-  "vault": {
-    "name": "cc-bots-vault",
-    "resourceGroup": "neverfail-cc-bots-rg"
+    "provider": "aws",
+    "region": "us-east-2",
+    "logLevel": "info",
+    "sumoEnabled": true,
+    "secretName": "cc-bots-vault"
   },
-  "sku": {
-    "tier": "Dynamic",
-    "size": "Y1"
-  }
+  "terraformConfig": {
+  "bucket": "nftestuser-tfstate-bucket",
+  "region": "us-east-2"
+}
 },
   "terraformConfig": {
   "resourceGroup": "nfcc-functions",
