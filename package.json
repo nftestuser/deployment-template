@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "@nfcc-functions/azure-ad-getallusers": "^1.0.1",
-    "@nfcc-functions/azure-getallvms":"^1.0.1"
+    "@nfcc-functions/azure-getallvms":"^1.0.1",
+    "@nfcc-functions/aws-getallbuckets": "^1.0.1"
   },
   "devDependencies": {
     "@devsupply/functions-bundler": "^0.1.24",
@@ -29,23 +30,15 @@
     "incrementNumber": "1"
   },
   "functionConfig": {
-  "provider": "azure",
-  "region": "centralus",
-  "logLevel": "info",
-  "sumoEnabled": true,
-  "vault": {
-    "name": "cc-bots-vault",
-    "resourceGroup": "neverfail-cc-bots-rg"
+    "provider": "aws",
+    "region": "us-east-2",
+    "logLevel": "info",
+    "sumoEnabled": true,
+    "secretName": "cc-bots-vault"
   },
-  "sku": {
-    "tier": "Dynamic",
-    "size": "Y1"
-  }
-},
   "terraformConfig": {
-  "resourceGroup": "nfcc-functions",
-  "storageAccount": "cbtfnfccfunctions",
-  "container": "mm-terraform-state"
+  "bucket": "nftestuser-tfstate-bucket",
+  "region": "us-east-2"
 }
 }
 
