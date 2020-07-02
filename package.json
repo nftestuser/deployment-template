@@ -40,12 +40,6 @@
   "bucket": "nftestuser-tfstate-bucket",
   "region": "us-east-2"
 }
-},
-  "terraformConfig": {
-  "resourceGroup": "nfcc-functions",
-  "storageAccount": "cbtfnfccfunctions",
-  "container": "mm-terraform-state"
-}
 }
 
 
