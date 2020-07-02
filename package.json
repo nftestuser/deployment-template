@@ -28,7 +28,8 @@
     "@nfcc-functions/aws-getvolumebackupplanpolicy":"^1.0.1",
     "@nfcc-functions/aws-getvolumesnapshots":"^1.0.1",
     "@nfcc-functions/aws-removevolumebackupplanpolicy":"^1.0.1",
-    "@nfcc-functions/aws-setvolumebackupplanpolicy":"^1.0.1"  
+    "@nfcc-functions/aws-setvolumebackupplanpolicy":"^1.0.1",
+    "@nfcc-functions/azure-getallvms":"^1.0.1"
     
   },
   "devDependencies": {
