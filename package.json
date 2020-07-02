@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@nfcc-functions/azure-ad-enableuserpasswordexpiration": "^1.0.1",
-    "@nfcc-functions/azure-ad-getallusers": "^1.0.1",
+    "@nfcc-functions/azure-ad-getallusers": "^1.0.2",
     "@nfcc-functions/azure-ad-getenabledusers":"^1.0.1",
     "@nfcc-functions/azure-ad-getuserpasswordexpiration":"^1.0.1",
     "@nfcc-functions/azure-addisableuserpasswordexpiration":"^1.0.1",
